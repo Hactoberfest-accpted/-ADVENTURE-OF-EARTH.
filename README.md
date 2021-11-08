@@ -32,6 +32,15 @@ Running time	45 minutes
 Production company(s)	Diverse Productions
 Distributor	Discovery Communications
 Release
+class ProductPricelist(models.Model):
+    _inherit = "product.pricelist"
+
+    def _default_website(self):
+        return self.env['website'].search([], limit=1)
+
+    website_id = fields.Many2one('website', string="website", default=_default_website)
+
+
 Original network	Discovery Channel
 Picture format	480p (Season 1)
 1080p (Season 2–7)
